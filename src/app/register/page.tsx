@@ -19,7 +19,7 @@ function RegisterPage() {
 
 export default RegisterPage;
 
-// from instrumentation.js
+// from instrumentation.js:
 
 // import connect from "@/lib/db";
 

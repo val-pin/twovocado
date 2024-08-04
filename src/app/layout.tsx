@@ -2,12 +2,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavbarWrapper from "./components/NavbarWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AvocaNO",
-  description: "Save Portugal's Natura 2000 areal",
+  description: "Save forests worldwide",
 };
 
 export default function RootLayout({
@@ -17,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NavbarWrapper />
+        {children}
+      </body>
     </html>
   );
 }
