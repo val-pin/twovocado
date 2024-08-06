@@ -1,6 +1,40 @@
-import React from "react";
+"use client";
+
+import { auth } from "@/config/firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import React, { useEffect } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function RegisterPage() {
+  const handleRegister = () => {};
+
+  // const fetchUser = async () => {
+  //   const request = await fetch("/api/register?email=r@gmail.com");
+  //   console.log("request", request);
+  //   const response = await request.json();
+  //   console.log("response>>>", response);
+  // };
+
+  // const register = async () => {
+  //   createUserWithEmailAndPassword(auth, "test@test.com", "123456")
+  //     .then((userCredential) => {
+  //       // Signed up
+  //       const user = userCredential.user;
+  //       console.log("user in the client>>>>", user);
+  //       // ...
+  //     })
+  //     .catch((error) => {
+  //       const errorCode = error.code;
+  //       const errorMessage = error.message;
+  //       // ..
+  //     });
+  // };
+  useEffect(() => {
+    // fetchUser();
+    // register();
+  }, []);
+
   return (
     <div>
       <h2>
@@ -13,6 +47,26 @@ function RegisterPage() {
         together witch others a bigger amount for a smaller price. And of course
         you also join this community and can exchange with other users about
       </p>
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="Check me out" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 }

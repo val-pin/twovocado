@@ -3,9 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import NavbarWrapper from "./components/NavbarWrapper";
+import AuthContextWrapper from "./components/AuthContextWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavbarWrapper />
-        {children}
+        <Container>
+          <AuthContextWrapper>
+            <NavbarWrapper />
+            {children}
+          </AuthContextWrapper>
+        </Container>
       </body>
     </html>
   );
