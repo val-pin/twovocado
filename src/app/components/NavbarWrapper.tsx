@@ -1,10 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Link from "next/link";
+import { AuthContext } from "@/context/AuthContext";
 
 function NavbarWrapper() {
+  const { user } = useContext(AuthContext);
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -13,9 +16,14 @@ function NavbarWrapper() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="feed">Feed</Nav.Link>
-            <Nav.Link href="login">Login</Nav.Link>
-            <Nav.Link href="register">Register</Nav.Link>
+            {user ? (
+              <Nav.Link href="feed">Feed</Nav.Link>
+            ) : (
+              <>
+                <Nav.Link href="login">Login</Nav.Link>
+                <Nav.Link href="register">Register</Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

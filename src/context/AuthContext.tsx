@@ -3,10 +3,11 @@ import {
   Dispatch,
   PropsWithChildren,
   SetStateAction,
+  useEffect,
   useState,
 } from "react";
-import { User } from "firebase/auth";
-import { app } from "@/config/firebaseConfig";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { app, auth } from "@/config/firebaseConfig";
 
 type AuthContextType = {
   user: User | null;
@@ -19,7 +20,18 @@ export const AuthContext = createContext<AuthContextType>(
 
 export const AuthContextProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<User | null>(null);
-  console.log(app);
+  function userStatusFirebase() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        console.log("userFirebase :>> ", user);
+      }
+    });
+  }
+
+  useEffect(() => {
+    userStatusFirebase();
+  }, []);
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {children}

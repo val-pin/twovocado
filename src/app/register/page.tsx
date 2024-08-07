@@ -1,15 +1,29 @@
 "use client";
 
 import { auth } from "@/config/firebaseConfig";
+import { AuthContext } from "@/context/AuthContext";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import React, { useEffect } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import bg from "../../images/bg.jpg";
+import { useRouter } from "next/navigation";
 
 function RegisterPage() {
-  const handleRegister = () => {};
+  const router = useRouter();
+  const { setUser } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("e.target.value :>> ", e.target.value);
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("e.target.value :>> ", e.target.value);
+    setPassword(e.target.value);
+  };
 
   // const fetchUser = async () => {
   //   const request = await fetch("/api/register?email=r@gmail.com");
@@ -18,24 +32,27 @@ function RegisterPage() {
   //   console.log("response>>>", response);
   // };
 
-  // const register = async () => {
-  //   createUserWithEmailAndPassword(auth, "test@test.com", "123456")
-  //     .then((userCredential) => {
-  //       // Signed up
-  //       const user = userCredential.user;
-  //       console.log("user in the client>>>>", user);
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       // ..
-  //     });
-  // };
-  useEffect(() => {
-    // fetchUser();
-    // register();
-  }, []);
+  const register = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("email, password :>> ", email, password);
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log("user in the client>>>>", user);
+        setUser(user);
+        router.push("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        //make an alert out of the error message for the user
+        console.log("error message", errorMessage);
+        // ..
+      });
+  };
 
   return (
     <Container>
@@ -49,10 +66,15 @@ function RegisterPage() {
             And of course you also join this community and can exchange with
             other users about
           </p>
-          <Form>
+          <Form onSubmit={register}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                value={email}
+                onChange={handleEmailChange}
+              />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -60,7 +82,12 @@ function RegisterPage() {
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
