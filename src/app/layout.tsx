@@ -20,10 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+        style={{
+          backgroundImage: `url("https://www.thespruce.com/thmb/3_0qh-k2duivL7OYO7c1Lw-wNg4=/2121x1414/filters:fill(auto,1)/Avocadotreeswithfruit-5624d9395234479f923831b984effa5f.jpg")`,
+        }}
+      >
         <Container>
           <AuthContextWrapper>
             <NavbarWrapper />
+
             {children}
           </AuthContextWrapper>
         </Container>

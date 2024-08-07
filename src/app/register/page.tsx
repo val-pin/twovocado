@@ -3,8 +3,10 @@
 import { auth } from "@/config/firebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import bg from "../../images/bg.jpg";
 
 function RegisterPage() {
   const handleRegister = () => {};
@@ -36,38 +38,41 @@ function RegisterPage() {
   }, []);
 
   return (
-    <div>
-      <h2>
-        Thanks for your interest and willingness to protect the nature on our
-        planet.
-      </h2>
-      <p>
-        Here you can register for receiving either a newsletter, contacts of
-        nearby sellers from origin countries or networks, where you can purchase
-        together witch others a bigger amount for a smaller price. And of course
-        you also join this community and can exchange with other users about
-      </p>
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+    <Container>
+      <Row>
+        <Col>
+          <h2>Join us! Let's protect the nature on our planet together.</h2>
+          <p>
+            Here you can register for receiving either a newsletter, contacts of
+            nearby sellers from origin countries or networks, where you can
+            purchase together witch others a bigger amount for a smaller price.
+            And of course you also join this community and can exchange with
+            other users about
+          </p>
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-    </div>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+        <Col></Col>
+      </Row>
+    </Container>
   );
 }
 
