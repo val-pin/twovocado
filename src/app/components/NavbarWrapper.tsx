@@ -1,13 +1,28 @@
 "use client";
 
 import React, { useContext } from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import Link from "next/link";
 import { AuthContext } from "@/context/AuthContext";
+import { signOut } from "firebase/auth";
+import { auth } from "@/config/firebaseConfig";
+import { useRouter } from "next/navigation";
 
 function NavbarWrapper() {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
+  const router = useRouter();
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null);
 
+        router.push("/");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("error during logout");
+      });
+  };
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -17,7 +32,11 @@ function NavbarWrapper() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             {user ? (
-              <Nav.Link href="feed">Feed</Nav.Link>
+              <>
+                {" "}
+                <Nav.Link href="feed">Feed</Nav.Link>
+                <Button onClick={logout}>Logout</Button>
+              </>
             ) : (
               <>
                 <Nav.Link href="login">Login</Nav.Link>

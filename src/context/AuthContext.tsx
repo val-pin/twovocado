@@ -28,7 +28,6 @@ export const AuthContextProvider = ({ children }: PropsWithChildren) => {
       }
     });
   }
-
   useEffect(() => {
     userStatusFirebase();
   }, []);
