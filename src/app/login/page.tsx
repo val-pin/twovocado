@@ -49,7 +49,7 @@ function LoginPage() {
   return (
     <Container>
       <Row>
-        <Col className="bg-primary">
+        <Col className="bg-light">
           <h2>Welcome back!</h2>
           <p>
             Login to exchange experiences with other community members and get
@@ -81,7 +81,7 @@ function LoginPage() {
             {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group> */}
-            <Button variant="primary" type="submit">
+            <Button variant="success" type="submit">
               Submit
             </Button>
           </Form>
