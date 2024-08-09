@@ -35,7 +35,9 @@ function NavbarWrapper() {
               <>
                 {" "}
                 <Nav.Link href="feed">Feed</Nav.Link>
-                <Button onClick={logout}>Logout</Button>
+                <Button variant="success" onClick={logout}>
+                  Logout
+                </Button>
               </>
             ) : (
               <>
