@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
 
 function CountryPage() {
@@ -18,9 +18,11 @@ function CountryPage() {
           illegally and generated unprecedented resistance in Portugal.
           <br></br> Already 1100 organizations and private individuals opposed
           the almost 700-hectare plantation at a public hearing. <br></br>So
-          there is still hope: In mid-August, politicians will decide whether
-          the controversial plans can be implemented.<br></br>
+          there is still hope: In mid-August 2024, politicians will decide
+          whether the controversial plans can be implemented.<br></br>
           <h2>Find out if your avocado is sustainable!</h2>
+          <Image src="natura2000.png" fluid className="mb-3" />
+          {/* https://images.prismic.io/pn2000-dev/8bfc3330-dd4c-414e-bad2-3e615cbf0a78_img-1.png?auto=compress,format         */}
         </Col>
         <Col></Col>
       </Row>

@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "react-bootstrap/Image";
 import styles from "./page.module.css";
 import { Col, Container, Dropdown, Row } from "react-bootstrap";
 
@@ -14,6 +14,12 @@ export default function Home() {
           Portugal, but every piece of land that is not yet cultivated - in
           Peru, Chile, Mexico, South Africa and so on. Whether vegetarian, vegan
           or flexitarian.
+          {/* https://www.swrfernsehen.de/marktcheck/oekochecker/klimakiller-avocado-100.html  */}
+          <Image
+            src="global_avocado_production_in_2020.png"
+            fluid
+            // href="https://upload.wikimedia.org/wikipedia/commons/3/33/Countries_by_avocado_production_in_2020.png"
+          />
           <p>
             Enter here the origin country of your fruit, to receive information
             about the current situation there
@@ -35,6 +41,14 @@ export default function Home() {
               <Dropdown.Item href="#/action-3">Vietnam</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
+          <p>Here are the latest news for consumers in Germany: </p>
+          <div className="mb-3" class="embed-responsive embed-responsive-16by9">
+            <iframe
+              class="embed-responsive-item"
+              src="https://www.swrfernsehen.de/marktcheck/oekochecker/1654628027952%2Cstaffel2-folge-avocado-100~_v-16x9@2dM_-ad6791ade5eb8b5c935dd377130b903c4b5781d8.jpg?imwidth=1200"
+              allowFullScreen
+            ></iframe>
+          </div>
         </Col>
         <Col></Col>
       </Row>

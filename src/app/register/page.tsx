@@ -61,7 +61,7 @@ function RegisterPage() {
     <Container>
       <Row>
         <Col className="bg-light">
-          <h2>Join us! Let's protect the nature on our planet together.</h2>
+          <h2>Join us! </h2>
           <p>
             Here you can register for receiving either a newsletter, contacts of
             nearby sellers from origin countries or networks, where you can

@@ -9,6 +9,11 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  user: {
+    type: String,
+    required: true,
+    //plus the uid from firebase
+  },
 });
 
 export default mongoose.models.Post || mongoose.model("Post", postSchema);
