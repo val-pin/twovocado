@@ -1,8 +1,4 @@
-import connect from "./app/lib/db";
-
-export async function register() {
-  await connect();
-}
+export async function register() {}
 
 // You just need to export the register function and call the dbConnect function inside it.
 

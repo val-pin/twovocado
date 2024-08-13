@@ -1,53 +1,57 @@
 "use client";
+import React, { useEffect, useState } from "react";
 
-import { addPost } from "@/actions/postActions";
-import { AuthContext } from "@/context/AuthContext";
-import React from "react";
-import { useContext } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+function FeedPage() {
+  const [posts, setPosts] = useState();
+  const [error, setError] = useState(false);
 
-// const UserContext = createContext();
+  const getUserFeed = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/feed");
+      if (!response.ok) {
+        setError(true);
+        return;
+      }
+      if (response.ok) {
+        const result = await response.json();
+        console.log("result", result);
+        setError(false);
+        setPosts(result.data.posts);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
-function PostsPage() {
-  const { user } = useContext(AuthContext);
-  console.log("user", user);
+  useEffect(() => {
+    getUserFeed();
+  }, []);
+
   return (
-    <Container>
-      <Row>
-        <Col className="bg-light">
-          <h2>Hello!</h2>
-          <p>
-            Here you can create a post by writing a notice and upload a picture.
-            Exchange with other users about avocados & Co., get contacts of
-            nearby sellers from origin countries or find a buyers' association,
-            where you can purchase together witch others a bigger amount for a
-            smaller price. And of course you also join this community and can
-          </p>
-          <Form className="mb-3" action={addPost}>
-            <div>
-              <Form.Label>Title</Form.Label>
-              <input name="title" type="text" />
+    <div>
+      <h1>User's Feed</h1>
+      {posts &&
+        posts.map((post) => {
+          return (
+            <div key={post._id}>
+              <hr />
+              <p>{post.title}</p>
+              <p>{post.description}</p>
+              <hr />
             </div>
-            <div>
-              <label>Description</label>
-              <textarea name="description" />
-            </div>
-            <input name="user" type="hidden" value={user?.uid || ""} />
-            <button>Submit</button>
-          </Form>
-          <p>Here are the latest news for consumers in Germany: </p>
-          <object className="mb-3 embed-responsive embed-responsive-16by9">
-            <iframe
-              className="embed-responsive-item"
-              src="https://www.zdf.de/nachrichten/wirtschaft/avocado-boom-deutschland-100.html"
-              allowFullScreen
-            ></iframe>
-          </object>
-        </Col>
-        <Col></Col>
-      </Row>
-    </Container>
+          );
+        })}
+
+      {posts && posts.length < 15 && <h1>you have to create more posts!!!</h1>}
+      {error && <h1>Something bad happened!</h1>}
+    </div>
   );
 }
 
-export default PostsPage;
+export default FeedPage;
+
+// create a type that defines a Post
+//create a type that defines the response from the server you get in the fetch
+
+//use the error boolean variable to display something to the user when the response is not ok
+//prevent the scenario in which the array of post coming from the backend is empty

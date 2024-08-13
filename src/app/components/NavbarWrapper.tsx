@@ -35,6 +35,7 @@ function NavbarWrapper() {
               <>
                 {" "}
                 <Nav.Link href="feed">Feed</Nav.Link>
+                <Nav.Link href="new-post">create Post</Nav.Link>
                 <Button variant="success" onClick={logout}>
                   Logout
                 </Button>
