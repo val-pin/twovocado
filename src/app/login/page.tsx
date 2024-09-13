@@ -47,48 +47,42 @@ function LoginPage() {
   };
 
   return (
-    <Container>
-      <Row>
-        <Col className="bg-light">
-          <h2>Welcome back!</h2>
-          <p>
-            Login to exchange experiences with other community members and get
-            the latest updates about sustainable avocado farming.
-          </p>{" "}
-          <Form onSubmit={Login}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={handleEmailChange}
-              />
+    <Container className="bg-light rounded-bottom">
+      <h2>Welcome back!</h2>
+      <p>
+        Login to exchange experiences with other community members and get the
+        latest updates about sustainable avocado farming.
+      </p>{" "}
+      <Form onSubmit={Login}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={handleEmailChange}
+          />
 
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </Form.Group>
-            {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Text className="text-muted">
+            We&apos;ll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </Form.Group>
+        {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group> */}
-            <Button variant="success" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Col>
-
-        <Col></Col>
-      </Row>
+        <Button variant="success" type="submit">
+          Submit
+        </Button>
+      </Form>
       {error && (
         <Alert variant={"warning"} className="mt-4">
           Hey this went wrong: {error}

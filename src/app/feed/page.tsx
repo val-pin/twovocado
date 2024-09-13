@@ -1,8 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import { data } from "@/@types";
 
 function FeedPage() {
-  const [posts, setPosts] = useState();
+  //additional file for types (post) or outside of fct
+  const [posts, setPosts] = useState<data[]>([]);
   const [error, setError] = useState(false);
 
   const getUserFeed = async () => {
@@ -28,8 +31,9 @@ function FeedPage() {
   }, []);
 
   return (
-    <div>
-      <h1>User's Feed</h1>
+    <Container className="bg-light rounded-bottom">
+      <h2>Community&apos;s Feed</h2>
+
       {posts &&
         posts.map((post) => {
           return (
@@ -37,14 +41,24 @@ function FeedPage() {
               <hr />
               <p>{post.title}</p>
               <p>{post.description}</p>
+              <img
+                style={{
+                  width: "300px",
+                  borderRadius: "50%",
+                }}
+                src={post.picture}
+              />
               <hr />
             </div>
           );
         })}
 
-      {posts && posts.length < 15 && <h1>you have to create more posts!!!</h1>}
-      {error && <h1>Something bad happened!</h1>}
-    </div>
+      {/* {posts && posts.length < 15 && (
+            <h1>you have to create more posts!!!</h1>
+          )} */}
+      {/* //prevent the scenario in which the array of post coming from the backend is empty */}
+      {!posts && error && <h1>Something bad happened!</h1>}
+    </Container>
   );
 }
 
@@ -54,4 +68,3 @@ export default FeedPage;
 //create a type that defines the response from the server you get in the fetch
 
 //use the error boolean variable to display something to the user when the response is not ok
-//prevent the scenario in which the array of post coming from the backend is empty

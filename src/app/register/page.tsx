@@ -27,13 +27,6 @@ function RegisterPage() {
     setPassword(e.target.value);
   };
 
-  // const fetchUser = async () => {
-  //   const request = await fetch("/api/register?email=r@gmail.com");
-  //   console.log("request", request);
-  //   const response = await request.json();
-  //   console.log("response>>>", response);
-  // };
-
   const register = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("email, password :>> ", email, password);
@@ -58,50 +51,44 @@ function RegisterPage() {
   };
 
   return (
-    <Container>
-      <Row>
-        <Col className="bg-light">
-          <h2>Join us! </h2>
-          <p>
-            Here you can register for receiving either a newsletter, contacts of
-            nearby sellers from origin countries or networks, where you can
-            purchase together witch others a bigger amount for a smaller price.
-            And of course you also join this community and can exchange with
-            other users about your favourite topics.
-          </p>
-          <Form onSubmit={register}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={handleEmailChange}
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
+    <Container className="justify-content-md-center bg-light pb-1 mb-3 rounded-bottom">
+      <h2>Join us! </h2>
+      <p>
+        Here you can register for receiving either a newsletter, contacts of
+        nearby sellers from origin countries or networks, where you can purchase
+        together witch others a bigger amount for a smaller price. And of course
+        you also join this community and can exchange with other users about
+        your favourite topics.
+      </p>
+      <Form onSubmit={register}>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <Form.Text className="text-muted">
+            We&apos;ll never share your email with anyone else.
+          </Form.Text>
+        </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
-              />
-            </Form.Group>
-            {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
-            <Button variant="success" type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Col>
-        <Col></Col>
-      </Row>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </Form.Group>
+
+        <Button variant="success" type="submit">
+          Submit
+        </Button>
+      </Form>
+
       {error && (
         <Alert variant={"warning"} className="mt-4">
           Hey this went wrong: {error}
