@@ -1,6 +1,6 @@
 "use server";
 
-import Post from "@/models/Post";
+import Post from "@/models/post";
 
 const addPost = async (post: FormData | any) => {
   //post: complains bc of TypeScript, but doesn't concern the functionality
