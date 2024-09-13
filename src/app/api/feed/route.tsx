@@ -1,4 +1,4 @@
-import PostModel from "@/models/Post";
+import PostModel from "@/models/post";
 import dbConnect from "@/lib/db";
 
 import { NextRequest, NextResponse } from "next/server";
